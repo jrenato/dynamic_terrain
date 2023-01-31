@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://k4sy7jcvplds"]
+
+[ext_resource type="Script" path="res://dynamic_terrain.gd" id="1_6qso7"]
+[ext_resource type="Script" path="res://scene_test.gd" id="1_p3b2a"]
+[ext_resource type="Texture2D" uid="uid://co1lvta1fe5vd" path="res://assets/rollingBall_sheet.png" id="2_lehb1"]
+[ext_resource type="Script" path="res://sphere.gd" id="4_qjhrn"]
+[ext_resource type="Texture2D" uid="uid://21wpynuqq48q" path="res://assets/road.png" id="4_txqsp"]
+
+[sub_resource type="Curve2D" id="Curve2D_n4bdf"]
+_data = {
+"points": PackedVector2Array(-47.8597, -36.9573, 47.8597, 36.9573, 307, 13, -166.487, 5.10124, 166.487, -5.10124, 742, 105, -200.818, 12.9015, 200.818, -12.9015, 1256, -62, 7.07107, -43.7176, -7.07107, 43.7176, 1484, 41, 222.032, -48.7271, -222.032, 48.7271, 966, 319, 117.38, 17.1442, -117.38, -17.1442, 347, 357, 38.1838, 37.7172, -38.1838, -37.7172, 135, 266, -28.2843, 49.3745, 28.2843, -49.3745, 78, 85, -43.8406, 12.7279, 43.8406, -12.7279, 190, -12, 0, 0, 0, 0, 271, -11, 0, 0, 0, 0, 307, 13)
+}
+point_count = 11
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mpb05"]
+radius = 31.197
+
+[node name="SceneTest" type="Node2D"]
+script = ExtResource("1_p3b2a")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(26, 346)
+script = ExtResource("1_6qso7")
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+color = Color(0.458824, 0.345098, 0.380392, 1)
+polygon = PackedVector2Array(315, 1, 297, 44, 228, 32, 221, -8)
+
+[node name="Path2D" type="Path2D" parent="StaticBody2D"]
+curve = SubResource("Curve2D_n4bdf")
+
+[node name="Line2D" type="Line2D" parent="StaticBody2D"]
+texture_repeat = 2
+points = PackedVector2Array(92, -62, 225, -46, 400, -17, 592, -27, 704, -80, 848, -114, 1021, -89)
+width = 96.0
+texture = ExtResource("4_txqsp")
+texture_mode = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(295, 125)
+script = ExtResource("4_qjhrn")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("2_lehb1")
+region_enabled = true
+region_rect = Rect2(193, 133, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("CircleShape2D_mpb05")
