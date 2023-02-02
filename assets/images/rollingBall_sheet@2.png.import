@@ -2,23 +2,23 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqgf3thg5phio"
-path="res://.godot/imported/test.png-aebf7f7cb9cfea774f75442021b07064.ctex"
+uid="uid://coabcmqabinlo"
+path="res://.godot/imported/rollingBall_sheet@2.png-491b8c1286085aa4b2f31509102112f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/test.png"
-dest_files=["res://.godot/imported/test.png-aebf7f7cb9cfea774f75442021b07064.ctex"]
+source_file="res://assets/images/rollingBall_sheet@2.png"
+dest_files=["res://.godot/imported/rollingBall_sheet@2.png-491b8c1286085aa4b2f31509102112f9.ctex"]
 
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false
