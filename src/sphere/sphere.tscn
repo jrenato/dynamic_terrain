@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://oydel2y4cokw"]
+
+[ext_resource type="Script" path="res://src/sphere/sphere.gd" id="1_nvkcu"]
+[ext_resource type="Texture2D" uid="uid://co1lvta1fe5vd" path="res://assets/images/rollingBall_sheet.png" id="2_w6mtd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mpb05"]
+radius = 31.197
+
+[node name="Sphere" type="RigidBody2D"]
+position = Vector2(295, 125)
+script = ExtResource("1_nvkcu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_w6mtd")
+region_enabled = true
+region_rect = Rect2(193, 133, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("CircleShape2D_mpb05")

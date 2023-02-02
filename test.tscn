@@ -1,55 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://k4sy7jcvplds"]
+[gd_scene load_steps=5 format=3 uid="uid://bgnxlqfra3mba"]
 
-[ext_resource type="Script" path="res://dynamic_terrain.gd" id="1_6qso7"]
-[ext_resource type="Script" path="res://scene_test.gd" id="1_p3b2a"]
-[ext_resource type="Texture2D" uid="uid://co1lvta1fe5vd" path="res://assets/rollingBall_sheet.png" id="2_lehb1"]
-[ext_resource type="Script" path="res://sphere.gd" id="4_qjhrn"]
-[ext_resource type="Texture2D" uid="uid://21wpynuqq48q" path="res://assets/road.png" id="4_txqsp"]
+[ext_resource type="Script" path="res://test.gd" id="1_p3b2a"]
+[ext_resource type="PackedScene" uid="uid://dblfjjig0vas5" path="res://src/dynamic_terrain/dynamic_terrain.tscn" id="2_r6tyu"]
+[ext_resource type="PackedScene" uid="uid://oydel2y4cokw" path="res://src/sphere/sphere.tscn" id="3_rprbu"]
 
-[sub_resource type="Curve2D" id="Curve2D_n4bdf"]
+[sub_resource type="Curve2D" id="Curve2D_a3mir"]
 _data = {
-"points": PackedVector2Array(-47.8597, -36.9573, 47.8597, 36.9573, 307, 13, -166.487, 5.10124, 166.487, -5.10124, 742, 105, -200.818, 12.9015, 200.818, -12.9015, 1256, -62, 7.07107, -43.7176, -7.07107, 43.7176, 1484, 41, 222.032, -48.7271, -222.032, 48.7271, 966, 319, 117.38, 17.1442, -117.38, -17.1442, 347, 357, 38.1838, 37.7172, -38.1838, -37.7172, 135, 266, -28.2843, 49.3745, 28.2843, -49.3745, 78, 85, -43.8406, 12.7279, 43.8406, -12.7279, 190, -12, 0, 0, 0, 0, 271, -11, 0, 0, 0, 0, 307, 13)
+"points": PackedVector2Array(-8.40896, 47.0902, 8.40896, -47.0902, -317, -30, -101.748, 6.72717, 101.748, -6.72717, -162, -110, -114.311, 18.5987, 114.311, -18.5987, 119, -65, -159.966, 11.022, 159.966, -11.022, 430, -207, -105.34, 4.50028, 105.34, -4.50028, 786, -147, -97.3404, 2.78965, 97.3404, -2.78965, 1226, -247, -1.05946, -77.3408, 1.05946, 77.3408, 1380, -128, 91.7578, -44.1821, -91.7578, 44.1821, 1192, 135, 136.225, -58.8628, -136.225, 58.8628, 597, 180, 38.6812, -8.40896, -38.6812, 8.40896, 257, 217, 51.2947, 5.04538, -51.2947, -5.04538, 37, 220, 58.8628, 21.0224, -58.8628, -21.0224, -156, 180, 21.0224, 23.5451, -21.0224, -23.5451, -291, 85, -12.6134, 46.2493, 12.6134, -46.2493, -316, -30)
 }
-point_count = 11
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_mpb05"]
-radius = 31.197
+point_count = 14
 
 [node name="SceneTest" type="Node2D"]
 script = ExtResource("1_p3b2a")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-current = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(26, 346)
-script = ExtResource("1_6qso7")
+[node name="DynamicTerrain" parent="." instance=ExtResource("2_r6tyu")]
 
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
-color = Color(0.458824, 0.345098, 0.380392, 1)
-polygon = PackedVector2Array(315, 1, 297, 44, 228, 32, 221, -8)
+[node name="Path2D" type="Path2D" parent="DynamicTerrain"]
+curve = SubResource("Curve2D_a3mir")
 
-[node name="Path2D" type="Path2D" parent="StaticBody2D"]
-curve = SubResource("Curve2D_n4bdf")
-
-[node name="Line2D" type="Line2D" parent="StaticBody2D"]
-texture_repeat = 2
-points = PackedVector2Array(92, -62, 225, -46, 400, -17, 592, -27, 704, -80, 848, -114, 1021, -89)
-width = 96.0
-texture = ExtResource("4_txqsp")
-texture_mode = 1
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2(295, 125)
-script = ExtResource("4_qjhrn")
-
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
-texture = ExtResource("2_lehb1")
-region_enabled = true
-region_rect = Rect2(193, 133, 64, 64)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(0, -0.5)
-shape = SubResource("CircleShape2D_mpb05")
+[node name="Sphere" parent="." instance=ExtResource("3_rprbu")]
+position = Vector2(-46, 120)
